@@ -1,0 +1,47 @@
+{% extends 'index.html' %}
+
+
+{% block content %}
+
+
+<div class="row">
+
+
+    
+
+  <div class="col-6">
+
+  
+
+
+      <img src="{{ postss.image.url }}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{postss.title}}</h5>
+        <p class="card-text">{{posts.description}}</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<img src="" alt="">
+<div class="row">
+  <div class="col-6">
+      <form class="form" action="{% url 'leave_comment' postss.slug %}" method="POST">
+      {% csrf_token %}
+          <input type="text" name="name" class="form-control"> 
+          <textarea class="textarea" id="comment" name="comment_text" cols="10" rows="1" aria-required="true" placeholder="Оставьте комментарий"></textarea>
+          <br>
+          <button class="btn is-primary" type="submit">Leave your comment</button>
+          <button style="margin-bottom: 15px;" class="button is-primary" type="reset">Cancel</button>
+          
+          {% for comment in postss.comments.all %}
+              <p style="margin-left: 6px;" class=""><i>{{comment.author_name}}:</i>{{comment.comment_text}}</p>
+          {% endfor %}
+      </form>
+  </div>
+</div>
+</div>
+
+
+{% endblock content %}

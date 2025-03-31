@@ -1,0 +1,59 @@
+{% extends 'index.html' %}
+
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<h1 style="text-align: center; font-family: 'Oswald', sans-serif; margin-right: 15px;">You are already signed in.</h1>
+{% else %}
+
+<div class="row d-flex justify-content-center" >
+    <div class="col-6">
+        <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+                
+        
+                <h5>{{form.username.label}}</h5>
+                <span>{{form.username}}</span>
+        
+        
+                       
+                
+            
+                
+            
+        
+                <h5>{{form.password.label}}</h5>
+                <span >{{form.password}}</span>
+        
+                
+                 <br><br>
+                <button class="btn btn-danger" type="submit">Sign in</button>
+        
+            </form>
+        
+    </div>
+</div>
+
+
+<div class="row">
+    {% if form.errors %}
+    <h4>Login or password entered incorrectly!</h4>
+    {% endif%}
+    <h6>
+        <a href="{% url 'password_reset'%}">
+            Forgot your password?
+    </a>
+    </h6>
+    <br>
+    {% if not user.is_authenticated%}
+    <a class="button is-danger" href="{% url 'logout' %}">Log out</a>
+    <a class="button is-danger" href="{% url 'index' %}">Home</a>
+
+    {% endif%}
+</div> 
+</div>
+{% endif%}
+
+
+{% endblock content %}

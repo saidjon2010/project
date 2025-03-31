@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+
+
+{% block content %}
+
+
+<div class="row">
+
+
+    
+{% for item in categories.categories.all %}
+  <div class="col-6">
+
+  
+
+
+      <img src="{{ item.image.url }}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{item.title}}</h5>
+        <p class="card-text">{{item.description}}</p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+</div>
+
+
+{% endblock content %}
